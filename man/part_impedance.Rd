@@ -13,5 +13,5 @@ part_impedance(electrical_object)
 string, ltspice command measuring the impedance
 }
 \description{
-Impedance
+Provides impedance in the form of voltage over current.
 }

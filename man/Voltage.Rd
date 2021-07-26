@@ -5,7 +5,7 @@
 \alias{Voltage}
 \title{Voltage Class}
 \description{
-Person class description
+Voltage class
 }
 \details{
 Voltage class
@@ -40,6 +40,7 @@ Voltage class
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{Voltage$new()}}
+\item \href{#method-spice_line}{\code{Voltage$spice_line()}}
 \item \href{#method-clone}{\code{Voltage$clone()}}
 }
 }
@@ -55,6 +56,15 @@ Voltage class
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{Voltage$new(voltage_txt)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-spice_line"></a>}}
+\if{latex}{\out{\hypertarget{method-spice_line}{}}}
+\subsection{Method \code{spice_line()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Voltage$spice_line()}\if{html}{\out{</div>}}
 }
 
 }

@@ -4,4 +4,5 @@
 .Ruserdata
 spice_files/*.raw
 spice_files/*.log
+proby/*
 

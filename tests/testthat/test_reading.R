@@ -25,3 +25,12 @@ test_that("we need to put a value", {
   expect_error(assert_value("blabla"))
   expect_true(assert_value("45 u"))
 })
+
+
+
+test_that("netlist is written correctly", {
+  netlist <- parse_netlist("../../spice_files/2m_cable_model.net")
+  write_netlist(netlist, "../../spice_files/2m_cable_model_vroom.net")
+  netlist2 <- parse_netlist("../../spice_files/2m_cable_model_vroom.net")
+  expect_equal(netlist, netlist2)
+})

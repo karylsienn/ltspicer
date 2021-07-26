@@ -17,3 +17,5 @@ part_impedance <- function(electrical_object) {
   current <- str_c("I(", electrical_object$name, ")")
   return(str_c(voltage, "/", current))
 }
+
+

@@ -5,11 +5,18 @@
 #' @field name Name of the object
 #' @field plus name of the plus node
 #' @field minus name of the minus node
+#' @field value value of the electrical object
+#' @method spice_line parsed line to put to the netlist
 ElectricalObject <- R6::R6Class("ElectricalObject",
     public = list(
       name = NULL,
       plus = NULL,
-      minus = NULL
+      minus = NULL,
+
+      spice_line = function() {
+        return(NULL)
+      }
+
     )
 )
 
@@ -79,6 +86,17 @@ Voltage <- R6::R6Class('Voltage',
            self$Cpar <- cpar
          }
        }
+     },
+
+     spice_line = function() {
+       line <- str_c(
+         self$name,
+         self$plus,
+         self$minus,
+         self$dc,
+         sep = " "
+       )
+       return(line)
      }
    )
 )
@@ -86,7 +104,21 @@ Voltage <- R6::R6Class('Voltage',
 
 
 
-
+#' Capacitor class
+#' @title Capacitor Class
+#' @docType class
+#' @description Class for the capacitors.
+#'
+#' @section Methods:
+#' \describe{
+#' \item{num_impedance compute the impedance considering the value of the capacitance}
+#' \item{sym_impedance give the symbolic impedance considering the name of the capacitor}
+#' }
+#'
+#' @importFrom stringr str_trim str_split str_detect str_c str_interp
+#'
+#' @examples
+#' @export
 Capacitor <- R6::R6Class("Capacitor",
   inherit = ElectricalObject,
   public = list(
@@ -108,7 +140,178 @@ Capacitor <- R6::R6Class("Capacitor",
       self$capacitance <- parse_number_suffix(parts[4])
 
       # What about other parts?
+      if(length(parts) >= 4) {
+        warning("The other parameters are not implemented yet.")
+      }
 
+    },
+
+    num_impedance = function(f) {
+      return(1i/(2*pi*f*self$capacitance))
+    },
+
+    sym_impedance = function(f) {
+      return(str_interp("1i/(2*pi*${f}*${self$name})"))
+    },
+
+    set_capacitance = function(new_cap) {
+      self$capacitance <- new_cap
+      invisible(self)
+    },
+
+    spice_line = function() {
+      line <- str_c(
+        self$name,
+        self$plus,
+        self$minus,
+        self$capacitance,
+        sep = " "
+      )
+      return(line)
     }
   )
 )
+
+
+
+#' Inductor class
+#' @title Inductor Class
+#' @docType class
+#' @description Class for the inductors
+#'
+#' @section Methods:
+#' \describe{
+#' \item{num_impedance compute the impedance considering the value of the inductance}
+#' \item{sym_impedance give the symbolic impedance considering the name of the inductor}
+#' \item{set_inductance set the inductance}
+#' \item{spice_line produce the line for the netlist}
+#' }
+#'
+#' @importFrom stringr str_trim str_split str_detect str_c str_interp
+#'
+#' @examples
+#' @export
+Inductor <- R6::R6Class("Inductor",
+  public = list(
+    units = "henries",
+    name = NULL,
+    plus = NULL,
+    minus = NULL,
+    inductance = NULL,
+
+    initialize = function(inductor_txt) {
+      parts <- str_trim(unlist(str_split(inductor_txt, "\\s")))
+      self$name <- parts[1]
+      self$plus <- parts[2]
+      self$minus <- parts[3]
+
+      # Make sure there is value there
+      assert_value(parts[4])
+      self$inductance <- parse_number_suffix(parts[4])
+
+      # What about other parts?
+      if(length(parts) >= 4) {
+        warning("The other parameters are not implemented yet.")
+      }
+    },
+
+    set_inductance = function(new_ind) {
+      self$inductance <- new_ind
+      invisible(self)
+    },
+
+    spice_line = function() {
+      line <- str_c(
+        self$name,
+        self$plus,
+        self$minus,
+        self$inductance,
+        sep = " "
+      )
+      return(line)
+    },
+
+    num_impedance = function(f) {
+      return(1i*2*pi*f*self$inductance)
+    },
+
+    sym_impedance = function(f) {
+      return(str_interp("1i*2*pi*${f}*${self$name}"))
+    }
+
+
+  ))
+
+
+
+
+
+#' Resistor class
+#' @title Resistor Class
+#' @docType class
+#' @description Class for the resistors
+#'
+#' @section Methods:
+#' \describe{
+#' \item{num_impedance compute the impedance considering the value of the resistance}
+#' \item{sym_impedance give the symbolic impedance considering the name of the resistor}
+#' \item{set_resistance set the resistance}
+#' \item{spice_line produce the line for the netlist}
+#' }
+#'
+#' @importFrom stringr str_trim str_split str_detect str_c str_interp
+#'
+#' @examples
+#' @export
+Resistor <- R6::R6Class("Resistor",
+  public = list(
+    units = "ohms",
+    name = NULL,
+    plus = NULL,
+    minus = NULL,
+    resistance = NULL,
+
+    initialize = function(resistor_txt) {
+      parts <- str_trim(unlist(str_split(resistor_txt, "\\s")))
+      self$name <- parts[1]
+      self$plus <- parts[2]
+      self$minus <- parts[3]
+
+      # Make sure there is value there
+      assert_value(parts[4])
+      self$resistance <- parse_number_suffix(parts[4])
+
+      # What about other parts?
+      if(length(parts) >= 4) {
+        warning("The other parameters are not implemented yet.")
+      }
+    },
+
+    set_resistance = function(new_res) {
+      self$resistance <- new_res
+      invisible(self)
+    },
+
+    spice_line = function() {
+      line <- str_c(
+        self$name,
+        self$plus,
+        self$minus,
+        self$resistance,
+        sep = " "
+      )
+      return(line)
+    },
+
+    num_impedance = function(f) {
+      return(self$resistance)
+    },
+
+    sym_impedance = function(f) {
+      return(str_interp("${self$name}"))
+    }
+))
+
+
+
+

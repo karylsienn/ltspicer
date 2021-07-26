@@ -54,17 +54,28 @@ parse_number_suffix <- function(num_with_suffix) {
 #' @return string vector with parse lines of the netlist
 #' @export
 #'
-#' @importFrom vroom vroom_lines locale
-#'
 #' @examples
 #' netlist <- parse_netlist('spice_files/2m_cable_model.net')
 #' print(netlist)
 #'
 parse_netlist <- function(netlist_path) {
-  vroom_lines(netlist_path, locale = locale(encoding = 'utf-16le'), skip = 0)
+  readLines(netlist_path,  encoding = "UTF-16LE", skipNul = TRUE)
 }
 
 
+
+#' Write netlist to a file
+#'
+#' @param netlist_lines
+#' @param netlist_path
+#'
+#' @return
+#' @export
+#'
+#' @examples
+write_netlist <- function(netlist_lines, netlist_path) {
+  writeLines(netlist_lines, con = netlist_path, sep = "\n")
+}
 
 #' Assert there is a value
 #'
@@ -81,7 +92,7 @@ parse_netlist <- function(netlist_path) {
 #' assert_value("45)
 #'
 assert_value <- function(value) {
-  value_pattern <- "^([0-9]+)(\\s*[A-Za-z]*)$"
+  value_pattern <- "^([0-9]+[\\.e\\-[0-9]*]*)(\\s*[A-Za-z]*)$"
   value_detected <- str_detect(value, value_pattern)
   if(!value_detected)
     stop("Make sure to put a value.")
@@ -90,6 +101,13 @@ assert_value <- function(value) {
 
 
 
+
+
+read_raw_spice <- function(path) {
+
+
+
+}
 
 
 
