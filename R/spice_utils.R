@@ -12,9 +12,9 @@
 #' @examples
 part_impedance <- function(electrical_object) {
   voltage <- ifelse(electrical_object$minus == "0",
-                    str_c("-", "V(", electrical_object$plus, ")"),
-                    str_c("(V(", electrical_object$minus, ")", "-V(", electrical_object$plus, "))"))
-  current <- str_c("I(", electrical_object$name, ")")
+                    str_c("-", "`V(", electrical_object$plus, ")`"),
+                    str_c("(`V(", electrical_object$minus, ")`", "-`V(", electrical_object$plus, ")`)"))
+  current <- str_c("`I(", electrical_object$name, ")`")
   return(str_c(voltage, "/", current))
 }
 

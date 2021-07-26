@@ -24,7 +24,7 @@ Inductor class
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{Inductor$new()}}
-\item \href{#method-set_inductance}{\code{Inductor$set_inductance()}}
+\item \href{#method-set_value}{\code{Inductor$set_value()}}
 \item \href{#method-spice_line}{\code{Inductor$spice_line()}}
 \item \href{#method-num_impedance}{\code{Inductor$num_impedance()}}
 \item \href{#method-sym_impedance}{\code{Inductor$sym_impedance()}}
@@ -41,11 +41,11 @@ Inductor class
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_inductance"></a>}}
-\if{latex}{\out{\hypertarget{method-set_inductance}{}}}
-\subsection{Method \code{set_inductance()}}{
+\if{html}{\out{<a id="method-set_value"></a>}}
+\if{latex}{\out{\hypertarget{method-set_value}{}}}
+\subsection{Method \code{set_value()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Inductor$set_inductance(new_ind)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Inductor$set_value(new_ind)}\if{html}{\out{</div>}}
 }
 
 }

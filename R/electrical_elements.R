@@ -127,6 +127,7 @@ Capacitor <- R6::R6Class("Capacitor",
     plus = NULL,
     minus = NULL,
     capacitance = NULL,
+    value = NULL,
 
     initialize = function(capacitor_txt) {
 
@@ -138,6 +139,7 @@ Capacitor <- R6::R6Class("Capacitor",
       # Make sure there is value there
       assert_value(parts[4])
       self$capacitance <- parse_number_suffix(parts[4])
+      self$value <- parse_number_suffix(parts[4])
 
       # What about other parts?
       if(length(parts) >= 4) {
@@ -154,8 +156,9 @@ Capacitor <- R6::R6Class("Capacitor",
       return(str_interp("1i/(2*pi*${f}*${self$name})"))
     },
 
-    set_capacitance = function(new_cap) {
+    set_value = function(new_cap) {
       self$capacitance <- new_cap
+      self$value <- new_cap
       invisible(self)
     },
 
@@ -198,6 +201,7 @@ Inductor <- R6::R6Class("Inductor",
     plus = NULL,
     minus = NULL,
     inductance = NULL,
+    value = NULL,
 
     initialize = function(inductor_txt) {
       parts <- str_trim(unlist(str_split(inductor_txt, "\\s")))
@@ -208,6 +212,7 @@ Inductor <- R6::R6Class("Inductor",
       # Make sure there is value there
       assert_value(parts[4])
       self$inductance <- parse_number_suffix(parts[4])
+      self$value <- parse_number_suffix(parts[4])
 
       # What about other parts?
       if(length(parts) >= 4) {
@@ -215,8 +220,9 @@ Inductor <- R6::R6Class("Inductor",
       }
     },
 
-    set_inductance = function(new_ind) {
+    set_value = function(new_ind) {
       self$inductance <- new_ind
+      self$value <- new_ind
       invisible(self)
     },
 
@@ -270,6 +276,7 @@ Resistor <- R6::R6Class("Resistor",
     plus = NULL,
     minus = NULL,
     resistance = NULL,
+    value = NULL,
 
     initialize = function(resistor_txt) {
       parts <- str_trim(unlist(str_split(resistor_txt, "\\s")))
@@ -280,6 +287,7 @@ Resistor <- R6::R6Class("Resistor",
       # Make sure there is value there
       assert_value(parts[4])
       self$resistance <- parse_number_suffix(parts[4])
+      self$value <- parse_number_suffix(parts[4])
 
       # What about other parts?
       if(length(parts) >= 4) {
@@ -287,8 +295,9 @@ Resistor <- R6::R6Class("Resistor",
       }
     },
 
-    set_resistance = function(new_res) {
+    set_value = function(new_res) {
       self$resistance <- new_res
+      self$value <- new_res
       invisible(self)
     },
 

@@ -24,7 +24,7 @@ Resistor class
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-new}{\code{Resistor$new()}}
-\item \href{#method-set_resistance}{\code{Resistor$set_resistance()}}
+\item \href{#method-set_value}{\code{Resistor$set_value()}}
 \item \href{#method-spice_line}{\code{Resistor$spice_line()}}
 \item \href{#method-num_impedance}{\code{Resistor$num_impedance()}}
 \item \href{#method-sym_impedance}{\code{Resistor$sym_impedance()}}
@@ -41,11 +41,11 @@ Resistor class
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_resistance"></a>}}
-\if{latex}{\out{\hypertarget{method-set_resistance}{}}}
-\subsection{Method \code{set_resistance()}}{
+\if{html}{\out{<a id="method-set_value"></a>}}
+\if{latex}{\out{\hypertarget{method-set_value}{}}}
+\subsection{Method \code{set_value()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Resistor$set_resistance(new_res)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Resistor$set_value(new_res)}\if{html}{\out{</div>}}
 }
 
 }

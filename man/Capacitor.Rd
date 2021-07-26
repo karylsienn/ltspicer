@@ -27,7 +27,7 @@ Capacitor class
 \item \href{#method-new}{\code{Capacitor$new()}}
 \item \href{#method-num_impedance}{\code{Capacitor$num_impedance()}}
 \item \href{#method-sym_impedance}{\code{Capacitor$sym_impedance()}}
-\item \href{#method-set_capacitance}{\code{Capacitor$set_capacitance()}}
+\item \href{#method-set_value}{\code{Capacitor$set_value()}}
 \item \href{#method-spice_line}{\code{Capacitor$spice_line()}}
 \item \href{#method-clone}{\code{Capacitor$clone()}}
 }
@@ -66,11 +66,11 @@ Capacitor class
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-set_capacitance"></a>}}
-\if{latex}{\out{\hypertarget{method-set_capacitance}{}}}
-\subsection{Method \code{set_capacitance()}}{
+\if{html}{\out{<a id="method-set_value"></a>}}
+\if{latex}{\out{\hypertarget{method-set_value}{}}}
+\subsection{Method \code{set_value()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{Capacitor$set_capacitance(new_cap)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{Capacitor$set_value(new_cap)}\if{html}{\out{</div>}}
 }
 
 }
