@@ -94,6 +94,7 @@ Voltage <- R6::R6Class('Voltage',
          self$plus,
          self$minus,
          self$dc,
+         ifelse(purrr::is_empty(self$ac), "", str_c("AC", self$ac$amplitude, self$ac$phase, sep = " ")),
          sep = " "
        )
        return(line)

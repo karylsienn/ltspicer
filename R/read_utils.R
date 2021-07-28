@@ -92,7 +92,7 @@ write_netlist <- function(netlist_lines, netlist_path) {
 #' assert_value("45)
 #'
 assert_value <- function(value) {
-  value_pattern <- "^([0-9]+[\\.e\\-\\+[0-9]*]*)(\\s*[A-Za-z]*)$"
+  value_pattern <- "^([\\-0-9]+[\\.e\\-\\+[0-9]*]*)(\\s*[A-Za-z]*)$"
   value_detected <- str_detect(value, value_pattern)
   if(!value_detected)
     stop("Make sure to put a value.")

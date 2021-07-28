@@ -149,8 +149,45 @@ Circuit <- R6::R6Class("Circuit",
 
       },
 
+      plot_compared_impedance = function(compare_tbl, params) {
+        if(missing(compare_tbl) && missing(params)) {
+          stop("One of the two has to be specified")
+        }
+
+        if(missing(params)) {
+
+
+        } else {
+
+        }
+      },
+
+      # The assumption is that compare_tbl has two columns: frequency (dbl), impedance (cpl)
+      optimize_params = function(compare_tbl, params_to_optimize, compare_fn, ...) {
+          # get initial points. Then optimize by calling LTspice and comparing the result with compare_tbl
+          # assume the loss function gets two complex vectors
+        initial_points <- purrr::map_dbl(params_to_optimize, function(.name) {
+          self$objects[[.name]]$object$value
+        })
+
+        loss_fn <- function(params) {
+          names(params) <- params_to_optimize
+          self$set_params(params)
+          self$run_netlist(ascii = TRUE)
+          self$compute_impedance()
+
+          # Assume compare_tbl and data are properly arranged (but this should be checked)
+          return(compare_fn(self$impedance_tbl$impedance, compare_tbl$impedance))
+        }
+
+        result <- optim(initial_points, loss_fn, ...)
+        return(result)
+
+      },
+
       # Print Circuit
       print = function() {
+        # TODO: Implement print in each objects and use their `print` methods.
         purrr::walk(
           self$objects,
           function(x) cat(x$object$name, " ", x$object$value, "\n")

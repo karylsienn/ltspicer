@@ -2,7 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-spice_files/*.raw
-spice_files/*.log
+spice_files/*
 proby/*
 
