@@ -1,9 +1,0 @@
-* /Users/karolniewiadomski/Documents/SCENT/Research/Simulations/Stochastic_methods_v01/Scripts/Dla_Piotra/R/ltspicer/spice_files/2m_cable_model.asc
-C1 N003 0 1.50697129829006e-10
-L1 N002 N003 4.20894095216543e-07
-R1 N002 N001 9.28e-05
-V1 N001 0 0 AC 1 0
-R2 N003 0 1.1e+09
-.ac dec 1000 150k 30Meg
-.backanno
-.end
